@@ -31,20 +31,13 @@ function logError(e) {
 }
 
 suite('Comparison modes', function() {
-  var appPath = path.join(__dirname, 'fixtures', 'apps', 'clock');
+  var sourcePath = path.join(__dirname, 'fixtures', 'gaia');
   var l10nPath = path.join(__dirname, 'fixtures', 'locales');
   var enUSPath = path.join(__dirname, 'fixtures', 'locales', 'en-US');
   var frPath = path.join(__dirname, 'fixtures', 'locales', 'fr');
 
-  test('compare langpacks in source', function(done) {
-    cl.compareLangpacksInSource(appPath, null, 'fr').then(
-      serializeLangpackDiffToText).then(
-        checkOutput.bind(null, done, 'compareLangpacksInSource'))
-          .catch(logError);
-  });
-
   test('compare l10n dir to source', function(done) {
-    cl.compareL10nDirToSource(appPath, null, l10nPath, 'fr').then(
+    cl.compareL10nDirToSource(sourcePath, l10nPath, 'fr').then(
       serializeLangpackDiffToText).then(
         checkOutput.bind(null, done, 'compareL10nDirToSource'))
           .catch(logError);
